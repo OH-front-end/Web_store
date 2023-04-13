@@ -7,18 +7,25 @@ const nextButton = document.querySelector('#next-btn');
 const previousButton = document.querySelector('#prev-btn');
 
 
+const SLIDES_LENGTH = slides.length;
+const ARROW_LEFT = 'ArrowLeft';
+const ARROW_RIGHT = 'ArrowRight';
+const SPACE = 'Space';
+
 
 let currentSlide = 0;
-let playing = true;
+let isPlaying = true;
 let swipeStartX = null;
 let swipeEndX = null;
-let slideInterval = setInterval(nextSlide, 2000);
+let timerID = null;
+let interval = 1000;
+
 
 
 function goToNth(n) {
   slides[currentSlide].classList.toggle('active');
   indicators[currentSlide].classList.toggle('active');
-  currentSlide = (slides.length + n) % slides.length;
+  currentSlide = (SLIDES_LENGTH + n) % SLIDES_LENGTH;
   slides[currentSlide].classList.toggle('active');
   indicators[currentSlide].classList.toggle('active');
 }
@@ -26,18 +33,18 @@ function goToNth(n) {
 
 function pause() {
   pauseButton.innerHTML = 'Play';
-  playing = false;
-  clearInterval(slideInterval);
+  isPlaying = false;
+  clearInterval(timerID);
 }
 
 function play() {
   pauseButton.innerHTML = 'Pause';
-  playing = true;
-  slideInterval = setInterval(nextSlide, 2000);
+  isPlaying = true;
+  timerID = setInterval(nextSlide, interval);
 }
 
 function pausePlay() {
-  if (playing) {
+  if (isPlaying) {
     pause();
   } else {
     play();
@@ -71,9 +78,9 @@ function indicate(e) {
 }
 
 function pressKey(e) {
-  if (e.code === 'ArrowLeft') prev();
-  if (e.code === 'ArrowRight') next();
-  if (e.code === 'Space') pausePlay();
+  if (e.code === ARROW_LEFT) prev();
+  if (e.code === ARROW_RIGHT) next();
+  if (e.code === SPACE) pausePlay();
 }
 
 function swipeStart(e) {
@@ -86,10 +93,19 @@ function swipeEnd(e) {
   if (swipeStartX - swipeEndX > 100) next();
 }
 
-pauseButton.addEventListener('click', pausePlay);
-previousButton.addEventListener('click', prev);
-nextButton.addEventListener('click', next);
-indicatorContainer.addEventListener('click', indicate);
-container.addEventListener('touchstart', swipeStart);
-container.addEventListener('touchend', swipeEnd);
-document.addEventListener('keydown', pressKey);
+function initListeners() {
+  pauseButton.addEventListener('click', pausePlay);
+  previousButton.addEventListener('click', prev);
+  nextButton.addEventListener('click', next);
+  indicatorContainer.addEventListener('click', indicate);
+  container.addEventListener('touchstart', swipeStart);
+  container.addEventListener('touchend', swipeEnd);
+  document.addEventListener('keydown', pressKey);
+}
+
+function init() {
+  initListeners();
+  timerID = setInterval(nextSlide, interval);
+}
+
+init();
