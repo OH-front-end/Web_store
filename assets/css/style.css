@@ -2,7 +2,7 @@
   position: relative;
 
   height: 150px;
-  margin: 0;
+  margin: 0 0 50px 0;
   padding: 0;
 
   list-style-type: none;
@@ -26,6 +26,10 @@
 
 .active {
   z-index: 2;
+
+  -webkit-transition-duration: 0.15s;
+       -o-transition-duration: 0.15s;
+          transition-duration: 0.15s;
 
   opacity: 1;
 }
@@ -59,4 +63,51 @@
 
 .slide:nth-of-type(5) {
   background: purple;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -ms-flex-align: center;
+
+  gap: 100px;
+}
+
+.controls_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  gap: 20px;
+}
+
+.controls {
+  padding: 10px;
+
+  cursor: pointer;
+
+  background-color: aquamarine;
+}
+
+.indicators_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  gap: 20px;
+}
+
+.indicator {
+  width: 40px;
+  height: 40px;
+
+  cursor: pointer;
+
+  background-color: #333333;
+}
+.indicator.active {
+  background-color: red;
 }

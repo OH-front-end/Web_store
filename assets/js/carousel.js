@@ -1,17 +1,21 @@
-let slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll('.slide');
+const indicatorContainer = document.querySelector('#indicators_container');
+const indicators = document.querySelectorAll('.indicator');
+const pauseButton = document.querySelector('#pause-btn');
+const nextButton = document.querySelector('#next-btn');
+const previousButton = document.querySelector('#prev-btn');
+
+
+
 let currentSlide = 0;
-let slideInterval = setInterval(nextSlide, 2000);
 let playing = true;
-let pauseButton = document.querySelector('#pause');
-let nextButton = document.querySelector('#next');
-let previousButton = document.querySelector('#previous');
 
-
-
-function goToNth() {
-  slides[currentSlide].className = 'slide';
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].className = 'slide active';
+function goToNth(n) {
+  slides[currentSlide].classList.toggle('active');
+  indicators[currentSlide].classList.toggle('active');
+  currentSlide = (slides.length + n) % slides.length;
+  slides[currentSlide].classList.toggle('active');
+  indicators[currentSlide].classList.toggle('active');
 }
 
 
@@ -35,13 +39,12 @@ function pausePlay() {
   }
 }
 
+function previousSlide() {
+  goToNth(currentSlide - 1);
+}
 
 function nextSlide() {
   goToNth(currentSlide + 1);
-}
-
-function previousSlide() {
-  goToNth(currentSlide - 1);
 }
 
 function prev() {
@@ -54,8 +57,17 @@ function next() {
   nextSlide();
 }
 
-
+function indicate(e) {
+  const target = e.target;
+  if (target.classList.contains('indicator')) {
+    pause();
+    goToNth(+target.dataset.slideTo);
+  }
+}
 
 pauseButton.addEventListener('click', pausePlay);
 previousButton.addEventListener('click', prev);
 nextButton.addEventListener('click', next);
+indicatorContainer.addEventListener('click', indicate);
+
+let slideInterval = setInterval(nextSlide, 2000);
