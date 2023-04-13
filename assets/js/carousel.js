@@ -3,8 +3,8 @@ let currentSlide = 0;
 let slideInterval = setInterval(nextSlide, 2000);
 let playing = true;
 let pauseButton = document.querySelector('#pause');
-let next = document.querySelector('#next');
-let previous = document.querySelector('#previous');
+let nextButton = document.querySelector('#next');
+let previousButton = document.querySelector('#previous');
 
 
 
@@ -44,7 +44,18 @@ function previousSlide() {
   goToNth(currentSlide - 1);
 }
 
+function prev() {
+  pause();
+  previousSlide();
+}
+
+function next() {
+  pause();
+  nextSlide();
+}
+
+
 
 pauseButton.addEventListener('click', pausePlay);
-previous.addEventListener('click', previousSlide);
-next.addEventListener('click', nextSlide);
+previousButton.addEventListener('click', prev);
+nextButton.addEventListener('click', next);
