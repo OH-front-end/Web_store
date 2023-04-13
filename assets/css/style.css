@@ -1,0 +1,262 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 60px;
+  padding: 40px 70px;
+
+  background-color: rgb(59, 50, 50);
+}
+
+.header_logo {
+  z-index: 4;
+
+  width: 60px;
+  height: 55px;
+
+  background-image: url(../img/Apple_logo_grey.svg.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.header_navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  gap: 30px;
+}
+
+.navbar_item {
+  text-decoration: none;
+
+  color: #cccccc;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 18px;
+}
+
+.carousel {
+  max-width: 100vw;
+  height: calc(100vh - 80px);
+}
+
+.slides {
+  position: relative;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  list-style-type: none;
+}
+
+.slide {
+  position: absolute;
+  z-index: 1;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  -webkit-transition: opacity 0.25s;
+       -o-transition: opacity 0.25s;
+          transition: opacity 0.25s;
+
+  opacity: 0;
+}
+
+.slide {
+  background: #333333;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.slide:nth-of-type(1) {
+  background-image: url(../img/iphone.png);
+}
+
+.slide:nth-of-type(2) {
+  background-image: url(../img/ipad.png);
+}
+
+.slide:nth-of-type(3) {
+  background-image: url(../img/watch.jpg);
+}
+
+.slide:nth-of-type(4) {
+  background-image: url(../img/mac.jpg);
+}
+
+.slide:nth-of-type(5) {
+  background-image: url(../img/airpods.png);
+}
+
+.slide:nth-of-type(6) {
+  background-image: url(../img/tv&home.png);
+}
+
+.slide:nth-of-type(7) {
+  background-image: url(../img/accessories.jpg);
+}
+
+.slide:nth-of-type(8) {
+  background-image: url(../img/entertainment.png);
+}
+
+.active {
+  z-index: 2;
+
+  opacity: 1;
+}
+
+.controls {
+  position: absolute;
+  z-index: 2;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0 5%;
+
+  gap: 2em;
+}
+
+.control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  min-width: 200px;
+  min-height: 200px;
+  padding: 1em;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
+
+  opacity: 0;
+  border-radius: 50%;
+  background-color: #cccccc;
+}
+.control:hover {
+  -webkit-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
+
+  opacity: 0.5;
+}
+.control.active {
+  background-color: blue;
+}
+
+.control-pause > span {
+  position: absolute;
+
+  opacity: 0;
+}
+
+.fa-pause,
+.fa-play,
+.fa-angle-left,
+.fa-angle-right {
+  font-size: 40px;
+}
+
+.indicators-container {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  min-width: 100%;
+  min-height: 30px;
+
+  gap: 30px;
+}
+
+.indicator {
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+  -webkit-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
+
+  opacity: 0.7;
+  border-radius: 50%;
+  background-color: darkgrey;
+}
+.indicator.active {
+  background-color: #333333;
+}
+.indicator:hover {
+  -webkit-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
+
+  background-color: #333333;
+}
+@media (max-width: 1200px) {
+  .control {
+    min-width: 150px;
+    min-height: 150px;
+  }
+  .indicators-container {
+    gap: 20px;
+  }
+}
+@media (max-width: 992px) {
+  .control {
+    display: none;
+  }
+  .indicators-container {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "gulp",
+  "version": "2.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "browser-sync": "^2.27.10",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^5.1.13",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "gulp": "^4.0.2",
+    "gulp-csscomb": "^3.1.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "postcss": "^8.4.16",
+    "postcss-discard-comments": "^5.1.2",
+    "prettier": "^2.8.3",
+    "sass": "^1.54.5",
+    "sort-css-media-queries": "^2.0.4"
+  }
+}
