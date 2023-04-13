@@ -1,3 +1,4 @@
+const container = document.querySelector('#carousel');
 const slides = document.querySelectorAll('.slide');
 const indicatorContainer = document.querySelector('#indicators_container');
 const indicators = document.querySelectorAll('.indicator');
@@ -9,6 +10,10 @@ const previousButton = document.querySelector('#prev-btn');
 
 let currentSlide = 0;
 let playing = true;
+let swipeStartX = null;
+let swipeEndX = null;
+let slideInterval = setInterval(nextSlide, 2000);
+
 
 function goToNth(n) {
   slides[currentSlide].classList.toggle('active');
@@ -65,9 +70,26 @@ function indicate(e) {
   }
 }
 
+function pressKey(e) {
+  if (e.code === 'ArrowLeft') prev();
+  if (e.code === 'ArrowRight') next();
+  if (e.code === 'Space') pausePlay();
+}
+
+function swipeStart(e) {
+  swipeStartX = e.changedTouches[0].pageX;
+}
+
+function swipeEnd(e) {
+  swipeEndX = e.changedTouches[0].pageX;
+  if (swipeStartX - swipeEndX < -100) prev();
+  if (swipeStartX - swipeEndX > 100) next();
+}
+
 pauseButton.addEventListener('click', pausePlay);
 previousButton.addEventListener('click', prev);
 nextButton.addEventListener('click', next);
 indicatorContainer.addEventListener('click', indicate);
-
-let slideInterval = setInterval(nextSlide, 2000);
+container.addEventListener('touchstart', swipeStart);
+container.addEventListener('touchend', swipeEnd);
+document.addEventListener('keydown', pressKey);
