@@ -1,7 +1,6 @@
 .slides {
   position: relative;
   height: 150px;
-  padding: 0px;
   margin: 0px 0px 50px 0px;
   list-style-type: none;
 }
@@ -62,9 +61,14 @@
   gap: 20px;
 }
 .controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: aquamarine;
   padding: 10px;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
 }
 
 .indicators_container {

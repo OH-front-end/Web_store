@@ -11,7 +11,8 @@ const SLIDES_LENGTH = slides.length;
 const ARROW_LEFT = 'ArrowLeft';
 const ARROW_RIGHT = 'ArrowRight';
 const SPACE = 'Space';
-
+const PAUSE_ICON = '<i class="fa-solid fa-pause"></i>';
+const PLAY_ICON = '<i class="fa-solid fa-play"></i>';
 
 let currentSlide = 0;
 let isPlaying = true;
@@ -32,13 +33,13 @@ function goToNth(n) {
 
 
 function pause() {
-  pauseButton.innerHTML = 'Play';
+  pauseButton.innerHTML = PLAY_ICON;
   isPlaying = false;
   clearInterval(timerID);
 }
 
 function play() {
-  pauseButton.innerHTML = 'Pause';
+  pauseButton.innerHTML = PAUSE_ICON;
   isPlaying = true;
   timerID = setInterval(nextSlide, interval);
 }
