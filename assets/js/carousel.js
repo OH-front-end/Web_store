@@ -2,11 +2,6 @@ class Carousel {
   constructor() {
     this.container = document.querySelector('#carousel');
     this.slides = document.querySelectorAll('.slide');
-    this.indicatorContainer = document.querySelector('#indicators_container');
-    this.indicators = document.querySelectorAll('.indicator');
-    this.pauseButton = document.querySelector('#pause-btn');
-    this.nextButton = document.querySelector('#next-btn');
-    this.previousButton = document.querySelector('#prev-btn');
   }
 
   initVariables() {
@@ -19,6 +14,43 @@ class Carousel {
     this.SPACE = 'Space';
     this.PAUSE_ICON = '<i class="fa-solid fa-pause"></i>';
     this.PLAY_ICON = '<i class="fa-solid fa-play"></i>';
+    this.LEFT_ICON = '<i class="fa-solid fa-angle-left"></i>';
+    this.RIGHT_ICON = '<i class="fa-solid fa-angle-right"></i>';
+  }
+
+
+  initControls() {
+    const controlsContainer = document.createElement('div');
+    controlsContainer.setAttribute('class', 'controls_container');
+    const PAUSE = `<div class="controls" id="pause-btn">${this.PAUSE_ICON}</div>`;
+    const PREV = ` <div class="controls" id="prev-btn">${this.LEFT_ICON}</div>`;
+    const NEXT = `<div class="controls" id="next-btn">${this.RIGHT_ICON}</div>`;
+    controlsContainer.innerHTML = PAUSE + PREV + NEXT;
+
+    this.container.appendChild(controlsContainer);
+
+    this.pauseButton = document.querySelector('#pause-btn');
+    this.nextButton = document.querySelector('#next-btn');
+    this.previousButton = document.querySelector('#prev-btn');
+  }
+
+  initIndicators() {
+    const indicators = document.createElement('div');
+    indicators.setAttribute('class', 'indicators');
+
+    for (let i = 0; i < this.SLIDES_LENGTH; i++) {
+      const indicator = document.createElement('div');
+      indicator.setAttribute('class', 'indicator');
+      indicator.dataset.slideTo = `${i}`;
+
+      if (i === 0) indicator.classList.add('active');
+      indicators.appendChild(indicator);
+    }
+
+    this.container.appendChild(indicators);
+
+    this.indicatorsContainer = document.querySelector('.indicators');
+    this.indicators = document.querySelectorAll('.indicator');
   }
 
   goToNth(n) {
@@ -81,19 +113,18 @@ class Carousel {
     if (e.code === this.SPACE) this.pausePlay();
   }
 
-
-
-
   initListeners() {
     this.pauseButton.addEventListener('click', this.pausePlay.bind(this));
     this.previousButton.addEventListener('click', this.prev.bind(this));
     this.nextButton.addEventListener('click', this.next.bind(this));
-    this.indicatorContainer.addEventListener('click', this.indicate.bind(this));
+    this.indicatorsContainer.addEventListener('click', this.indicate.bind(this));
     document.addEventListener('keydown', this.pressKey.bind(this));
   }
 
   init() {
     this.initVariables();
+    this.initControls();
+    this.initIndicators();
     this.initListeners();
     this.timerID = setInterval(this.nextSlide.bind(this), this.interval);
   }

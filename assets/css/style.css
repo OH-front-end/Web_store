@@ -64,17 +64,6 @@
   background: purple;
 }
 
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -ms-flex-align: center;
-
-  gap: 100px;
-}
-
 .controls_container {
   display: -webkit-box;
   display: -ms-flexbox;
