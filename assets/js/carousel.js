@@ -81,15 +81,7 @@ class Carousel {
     if (e.code === this.SPACE) this.pausePlay();
   }
 
-  swipeStart(e) {
-    this.swipeStartX = e.changedTouches[0].pageX;
-  }
 
-  swipeEnd(e) {
-    this.swipeEndX = e.changedTouches[0].pageX;
-    if (this.swipeStartX - this.swipeEndX < -100) this.prev();
-    if (this.swipeStartX - this.swipeEndX > 100) this.next();
-  }
 
 
   initListeners() {
@@ -97,8 +89,6 @@ class Carousel {
     this.previousButton.addEventListener('click', this.prev.bind(this));
     this.nextButton.addEventListener('click', this.next.bind(this));
     this.indicatorContainer.addEventListener('click', this.indicate.bind(this));
-    this.container.addEventListener('touchstart', this.swipeStart.bind(this));
-    this.container.addEventListener('touchend', this.swipeEnd.bind(this));
     document.addEventListener('keydown', this.pressKey.bind(this));
   }
 
@@ -109,6 +99,4 @@ class Carousel {
   }
 }
 
-
-const carousel = new Carousel();
-carousel.init();
+export default Carousel;
