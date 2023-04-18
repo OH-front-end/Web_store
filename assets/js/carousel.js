@@ -1,6 +1,7 @@
 class Carousel {
   constructor() {
     this.container = document.querySelector('#carousel');
+    this.slidesContainer = document.querySelector('#slides');
     this.slides = document.querySelectorAll('.slide');
   }
 
@@ -25,9 +26,9 @@ class Carousel {
     const PAUSE = `<div class="controls" id="pause-btn">${this.PAUSE_ICON}</div>`;
     const PREV = ` <div class="controls" id="prev-btn">${this.LEFT_ICON}</div>`;
     const NEXT = `<div class="controls" id="next-btn">${this.RIGHT_ICON}</div>`;
-    controlsContainer.innerHTML = PAUSE + PREV + NEXT;
+    controlsContainer.innerHTML = PREV + PAUSE + NEXT;
 
-    this.controlsIndicators.appendChild(controlsContainer);
+    this.slidesContainer.appendChild(controlsContainer);
 
     this.pauseButton = document.querySelector('#pause-btn');
     this.nextButton = document.querySelector('#next-btn');
@@ -47,18 +48,10 @@ class Carousel {
       indicators.appendChild(indicator);
     }
 
-    this.controlsIndicators.appendChild(indicators);
+    this.slidesContainer.appendChild(indicators);
 
     this.indicatorsContainer = document.querySelector('.indicators_container');
     this.indicators = document.querySelectorAll('.indicator');
-  }
-
-  controlsIndicatorsContainer() {
-    const controlsIndicators = document.createElement('div');
-    controlsIndicators.setAttribute('class', 'controls_indicators');
-    this.container.appendChild(controlsIndicators);
-
-    this.controlsIndicators = document.querySelector('.controls_indicators');
   }
 
   goToNth(n) {
@@ -131,7 +124,6 @@ class Carousel {
 
   init() {
     this.initVariables();
-    this.controlsIndicatorsContainer();
     this.initControls();
     this.initIndicators();
     this.initListeners();
