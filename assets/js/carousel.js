@@ -27,7 +27,7 @@ class Carousel {
     const NEXT = `<div class="controls" id="next-btn">${this.RIGHT_ICON}</div>`;
     controlsContainer.innerHTML = PAUSE + PREV + NEXT;
 
-    this.container.appendChild(controlsContainer);
+    this.controlsIndicators.appendChild(controlsContainer);
 
     this.pauseButton = document.querySelector('#pause-btn');
     this.nextButton = document.querySelector('#next-btn');
@@ -36,7 +36,7 @@ class Carousel {
 
   initIndicators() {
     const indicators = document.createElement('div');
-    indicators.setAttribute('class', 'indicators');
+    indicators.setAttribute('class', 'indicators_container');
 
     for (let i = 0; i < this.SLIDES_LENGTH; i++) {
       const indicator = document.createElement('div');
@@ -47,10 +47,18 @@ class Carousel {
       indicators.appendChild(indicator);
     }
 
-    this.container.appendChild(indicators);
+    this.controlsIndicators.appendChild(indicators);
 
-    this.indicatorsContainer = document.querySelector('.indicators');
+    this.indicatorsContainer = document.querySelector('.indicators_container');
     this.indicators = document.querySelectorAll('.indicator');
+  }
+
+  controlsIndicatorsContainer() {
+    const controlsIndicators = document.createElement('div');
+    controlsIndicators.setAttribute('class', 'controls_indicators');
+    this.container.appendChild(controlsIndicators);
+
+    this.controlsIndicators = document.querySelector('.controls_indicators');
   }
 
   goToNth(n) {
@@ -123,6 +131,7 @@ class Carousel {
 
   init() {
     this.initVariables();
+    this.controlsIndicatorsContainer();
     this.initControls();
     this.initIndicators();
     this.initListeners();

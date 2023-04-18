@@ -1,8 +1,15 @@
+.carousel {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  // min-height: 100vw;
+}
+
 .slides {
   position: relative;
   height: 150px;
   margin: 0px 0px 50px 0px;
   list-style-type: none;
+  grid-column: 1 / span 2;
 }
 
 .slide {
@@ -50,11 +57,10 @@
   background: purple;
 }
 
-// .container {
-//   display: flex;
-//   gap: 100px;
-//   align-items: center;
-// }
+.controls_indicators {
+  display: flex;
+  gap: 100px;
+}
 
 .controls_container {
   display: flex;
@@ -78,6 +84,8 @@
 .indicator {
   width: 40px;
   height: 40px;
+  padding: 10px;
+
   background-color: #333;
   cursor: pointer;
 
