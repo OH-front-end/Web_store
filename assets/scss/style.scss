@@ -74,17 +74,34 @@
   position: absolute;
   display: flex;
   z-index: 3;
-  gap: 708px;
+  gap: 1235px;
 }
 .controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aquamarine;
+  background-color: antiquewhite;
+  color: gray;
   padding: 10px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 150px;
+  height: 100vh;
+  opacity: 0;
+  transition-duration: 1s;
+
+  &:hover {
+    opacity: 0.3;
+    transition-duration: 1s;
+  }
+}
+
+.controls-pause {
+  display: none;
+}
+
+.controls-prev,
+.controls-next {
+  font-size: 200px;
 }
 
 .indicators_container {
@@ -98,7 +115,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  opacity: 0.4;
+  opacity: 0.2;
 
   background-color: #333;
   cursor: pointer;

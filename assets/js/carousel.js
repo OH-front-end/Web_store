@@ -23,9 +23,9 @@ class Carousel {
   initControls() {
     const controlsContainer = document.createElement('div');
     controlsContainer.setAttribute('class', 'controls_container');
-    const PAUSE = `<div class="controls" id="pause-btn">${this.PAUSE_ICON}</div>`;
-    const PREV = ` <div class="controls" id="prev-btn">${this.LEFT_ICON}</div>`;
-    const NEXT = `<div class="controls" id="next-btn">${this.RIGHT_ICON}</div>`;
+    const PAUSE = `<div class="controls controls-pause" id="pause-btn">${this.PAUSE_ICON}</div>`;
+    const PREV = ` <div class="controls controls-prev" id="prev-btn">${this.LEFT_ICON}</div>`;
+    const NEXT = `<div class="controls controls-next" id="next-btn">${this.RIGHT_ICON}</div>`;
     controlsContainer.innerHTML = PREV + PAUSE + NEXT;
 
     this.slidesContainer.appendChild(controlsContainer);
