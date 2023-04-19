@@ -151,7 +151,7 @@
        -o-transition-duration: 1s;
           transition-duration: 1s;
 
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .controls-pause {
@@ -160,8 +160,6 @@
 
 .controls-prev,
 .controls-next {
-  display: none;
-
   font-size: 200px;
 }
 

@@ -107,7 +107,7 @@
   transition-duration: 1s;
 
   &:hover {
-    opacity: 0.3;
+    opacity: 0.5;
     transition-duration: 1s;
   }
 }
@@ -119,7 +119,7 @@
 .controls-prev,
 .controls-next {
   font-size: 200px;
-  display: none;
+  // display: none;
 }
 
 .indicators_container {

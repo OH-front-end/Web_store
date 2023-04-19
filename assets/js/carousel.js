@@ -1,14 +1,24 @@
 class Carousel {
-  constructor() {
-    this.container = document.querySelector('#carousel');
-    this.slidesContainer = document.querySelector('#slides');
-    this.slides = document.querySelectorAll('.slide');
+  constructor(o) {
+    const settings = {
+      ...{
+        containerID: '#carousel',
+        slidesContainerID: '#slides',
+        slidesID: '.slide',
+        interval: 1000,
+        isPlaying: true
+      },
+      ...o
+    };
+    this.container = document.querySelector(settings.containerID);
+    this.slidesContainer = document.querySelector(settings.slidesContainerID);
+    this.slides = document.querySelectorAll(settings.slidesID);
+    this.interval = settings.interval;
+    this.isPlaying = settings.isPlaying;
   }
 
   initVariables() {
     this.currentSlide = 0;
-    this.isPlaying = true;
-    this.interval = 1000;
     this.SLIDES_LENGTH = this.slides.length;
     this.ARROW_LEFT = 'ArrowLeft';
     this.ARROW_RIGHT = 'ArrowRight';
@@ -127,7 +137,7 @@ class Carousel {
     this.initControls();
     this.initIndicators();
     this.initListeners();
-    this.timerID = setInterval(this.nextSlide.bind(this), this.interval);
+    if (this.isPlaying) this.timerID = setInterval(this.nextSlide.bind(this), this.interval);
   }
 }
 
